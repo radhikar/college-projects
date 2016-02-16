@@ -1,0 +1,62 @@
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+
+double lat, lon, rt, dec, gmt;
+double rthour, rtmin, rtsec, dec_degree, dec_arcminute, dec_arcsecond;
+    
+    cout<<"Enter the right ascention of the target star. Neglect the decomal on the second.\n";
+    cout<<"Enter the hour."<<endl; 
+    cin>>rthour;
+    cout<<"Enter the minute.\n";
+    cin>>rtmin;
+    cout<<"Enter the second.\n";
+    cin>>rtsec;
+    
+    
+    
+   rt = (rthour)+((rtmin/60))+((rtsec/360));
+  
+    cout<<rt<<"    ....see!!!!"<<endl;
+    
+    cout<<"Enter the declation of the target star.\n";
+    cout<<"Enter the degree.\n";
+    cin>>dec_degree;
+    cout<<"Enter the arcminute.\n";
+    cin>>dec_arcminute;
+    cout<<"Enter the arcsecond.\n";
+    cin>>dec_arcsecond;
+    
+    dec = ((dec_degree)+(dec_arcminute /60))+((dec_arcsecond/360));
+    
+    cout<<dec<<"....see"<<endl;
+    cout<<"Enter the latitude of the point of the observation.\n";
+    cin>>lat;
+    cout<<"Enter the longitude of the point of the pbservation.\n";
+    cin>>lon;
+    cout<<"Enter the Greenwich Standard Mean Time (GSMT) at 0 Hrs. \n";
+    cin>>gmt;
+    
+  /*  double LST=(gmt-lon+1.00274);
+    double HA = LST-rt;
+    double secz = (1/(sin(lat)*sin(dec)+ cos(lat)*cos(dec)*cos(HA)));
+    double Airmass = secz*(1-0.0012*(secz-1));
+   */ 
+   
+    double LST=(gmt+lon+0.6264);
+    cout<<LST<<"   LST"<<endl;
+    double HA = LST-rt;
+    cout<<HA<<"   HA"<<endl;
+    double secz = (1/((sin(lat)*sin(dec))+ (cos(lat)*cos(dec)*cos(HA))));
+    cout<<secz<<"   secz"<<endl;
+    double Airmass = secz*(1-0.0012*((secz*secz)-1));
+   
+    cout<<"SO the airmass is: "<<Airmass<<endl;
+
+  system("PAUSE");
+  return 0;
+
+}
